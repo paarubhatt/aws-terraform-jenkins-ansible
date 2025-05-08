@@ -7,6 +7,7 @@ pipeline {
                 sh 'hostname'
                 sh 'whoami'
                 sh 'uptime'
+                echo 'mayu gagan' 
             }
         }
     }
