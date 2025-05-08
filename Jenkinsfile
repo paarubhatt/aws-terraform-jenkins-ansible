@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'your-agent-label' } // Replace with your actual agent label
+    agent { label 'agent-1' } // Replace with your actual agent label
     stages {
         stage('Verify Connection') {
             steps {
