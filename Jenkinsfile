@@ -6,7 +6,7 @@ pipeline {
                 echo "Running on: ${env.NODE_NAME}"
                 sh 'hostname'
                 sh 'whoami'
-                echo "end of code"              
+                echo "end of pipeline"              
             }
         }
     }
