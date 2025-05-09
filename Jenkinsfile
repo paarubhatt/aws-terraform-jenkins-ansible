@@ -27,14 +27,15 @@ environment {
          }
 
          stage('SonarQube analysis') {
-         environment {
-           scannerHome = tool 'sonarqube'
-         }
-             steps{
-             withSonarQubeEnv('sonarqube') { // If you have configured more than one global server connection, you can specify its name
-               sh "${scannerHome}/bin/sonar-scanner -X"
-             }
-             }
+            steps{
+                withSonarQubeEnv('SonarQube') {
+                        sh '''mvn clean verify sonar:sonar \
+                        -Dsonar.projectKey=gitops-with-argocd \
+                        -Dsonar.projectName='gitops-with-argocd' \
+                        -Dsonar.host.url=$sonarurl \
+                        -Dsonar.login=$sonarlogin'''
+                }
+            }
          }
          stage("Quality Gate"){
              steps {
