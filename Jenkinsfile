@@ -6,7 +6,7 @@ pipeline {
                 echo "Running on: ${env.NODE_NAME}"
                 sh 'hostname'
                 sh 'whoami'
-                echo "pipleine auto-triggered"              
+                echo "end of code"              
             }
         }
     }
