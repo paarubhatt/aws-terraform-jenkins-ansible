@@ -1,5 +1,8 @@
 pipeline {
     agent { label 'agent-1' } // Replace with your actual agent label
+    environment {
+        SONARQUBE = credentials('sonarqube')
+    }
     stages {
         stage('Verify Connection') {
             steps {
@@ -7,6 +10,13 @@ pipeline {
                 sh 'hostname'
                 sh 'whoami'
                 echo "end of pipeline"              
+            }
+        }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn sonar:sonar'
+                }
             }
         }
     }
