@@ -20,6 +20,7 @@
 		 <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 		<sonar.projectKey>team2_devops-project</sonar.projectKey>
         <sonar.host.url>http://13.216.111.89:9000</sonar.host.url>
+        <sonar.login>squ_d1c6d270e89edfc04103ac761f921f638d9297a0</sonar.login>
 	</properties>
 
 	<dependencies>
@@ -96,6 +97,11 @@
         			<argLine>-Xmx1024m -Djava.awt.headless=true</argLine>
     			</configuration>
 			</plugin>
+			<plugin>
+      				<groupId>org.sonarsource.scanner.maven</groupId>
+      				<artifactId>sonar-maven-plugin</artifactId>
+      				<version>4.0.0.4121</version>
+    		</plugin>
 
 			<plugin>
 				<groupId>org.jacoco</groupId>
