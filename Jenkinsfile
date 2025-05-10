@@ -57,7 +57,7 @@ environment {
                     buildInfo.env.capture = true
                     server.publishBuildInfo buildInfo
 
-                    cho '<--------------- Jar Publish Ended --------------->'
+                    echo '<--------------- Jar Publish Ended --------------->'
                 }
             }
         }
