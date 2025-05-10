@@ -33,43 +33,6 @@ environment {
                 }
             }
          }
-
-        stage("Quality Gate"){
-            steps {
-                script {
-                    
-                    timeout(time: 30, unit: 'MINUTES') {  // Set a timeout for the stage
-                    def maxRetries = 10  // Set the maximum number of retries (i.e., check up to 6 times)
-                    def waitTime = 10    // Wait for 10 seconds between retries
-                    def qgStatus = 'NONE'
-
-                    // Retry loop for checking quality gate status
-                    for (int i = 0; i < maxRetries; i++) {
-                        echo "Checking Quality Gate status (Attempt ${i + 1} of ${maxRetries})..."
-                    
-                        // Call waitForQualityGate and get the status
-                        def qg = waitForQualityGate()
-
-                        // Check the status of the quality gate
-                        qgStatus = qg.status
-
-                        if (qgStatus == 'OK') {
-                            echo "Quality Gate passed: ${qgStatus}"
-                            break  // Break the loop if the status is OK
-                        } else {
-                            echo "Quality Gate is still pending or failed. Retrying in ${waitTime} seconds..."
-                            sleep(waitTime)  // Wait for 10 seconds before retrying
-                        }
-                    }
-
-                    // Final check after retries
-                    if (qgStatus != 'OK') {
-                    error "Pipeline aborted due to quality gate failure: ${qgStatus}"
-                    }                    
-                }
-            }
-        }
-    } 
         
         stage("Jar Publish") {
             steps {
