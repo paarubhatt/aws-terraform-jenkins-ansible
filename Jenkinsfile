@@ -28,7 +28,7 @@ environment {
 
          stage('SonarQube analysis') {
             steps{
-                withSonarQubeEnv('sonarqube') {
+                withSonarQubeEnv('sonarqubeScanner') {
                         sh '''mvn clean verify sonar:sonar '''
                 }
             }
