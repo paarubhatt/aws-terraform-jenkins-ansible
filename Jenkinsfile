@@ -45,7 +45,7 @@ environment {
                         "files": [
                             {
                                 "pattern": "jarstaging/(*)",
-                                "target": "maven-libs-release-local/{1}",
+                                "target": "maven-libs-release-locall/{1}",
                                 "flat": "false",
                                 "props": "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}",
                                 "exclusions": [ "*.sha1", "*.md5"]
