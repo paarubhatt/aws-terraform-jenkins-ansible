@@ -1,7 +1,6 @@
 def registry = 'https://trialvgx1i7.jfrog.io'
 def imageName = 'trialvgx1i7.jfrog.io/mayu-docker-local/sample_app'
 def version   = '1.0.0'
-def server = Artifactory.server 'my-instance'
 
 pipeline {
     agent {
@@ -40,7 +39,8 @@ environment {
             steps {
                 script {
                     echo '<--------------- Jar Publish Started --------------->'
-
+                    def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"jfrog-credentials"
+                    def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
                     def uploadSpec = """{
                         "files": [
                             {
