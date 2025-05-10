@@ -1,7 +1,7 @@
 def registry = 'https://trialvgx1i7.jfrog.io'
 def imageName = 'trialvgx1i7.jfrog.io/mayu-docker-local/sample_app'
 def version   = '1.0.0'
-def server = Artifactory.server('artifactory')
+def server = Artifactory.server 'artifactory'
 
 pipeline {
     agent {
