@@ -36,30 +36,30 @@ environment {
          }
         
         stage("Jar Publish") {
-    steps {
-        script {
-            echo '<--------------- Jar Publish Started --------------->'
+            steps {
+                script {
+                    echo '<--------------- Jar Publish Started --------------->'
 
-            def uploadSpec = """{
-                "files": [
-                    {
-                        "pattern": "jarstaging/(*)",
-                        "target": "maven-libs-release-local/{1}",
-                        "flat": "false",
-                        "props": "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}",
-                        "exclusions": [ "*.sha1", "*.md5"]
-                    }
-                ]
-            }"""
+                    def uploadSpec = """{
+                        "files": [
+                            {
+                                "pattern": "jarstaging/(*)",
+                                "target": "maven-libs-release-local/{1}",
+                                "flat": "false",
+                                "props": "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}",
+                                "exclusions": [ "*.sha1", "*.md5"]
+                             }
+                        ]
+                    }"""
 
-            def buildInfo = server.upload spec: uploadSpec
-            buildInfo.env.capture = true
-            server.publishBuildInfo buildInfo
+                    def buildInfo = server.upload spec: uploadSpec
+                    buildInfo.env.capture = true
+                    server.publishBuildInfo buildInfo
 
-            echo '<--------------- Jar Publish Ended --------------->'
+                    cho '<--------------- Jar Publish Ended --------------->'
+                }
+            }
         }
-    }
-}
 
 
 //     stage(" Docker Build ") {
