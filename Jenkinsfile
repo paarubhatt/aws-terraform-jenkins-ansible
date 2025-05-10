@@ -69,6 +69,7 @@ environment {
                 }
             }
         }
+    } 
         
         stage("Jar Publish") {
             steps {
