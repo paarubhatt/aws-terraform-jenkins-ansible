@@ -66,6 +66,7 @@ environment {
      stage(" Docker Build ") {
        steps {
          script {
+            sh "docker version"
             echo '<--------------- Docker Build Started --------------->'
             app = docker.build(imageName+":"+version)
             echo '<--------------- Docker Build Ends --------------->'
