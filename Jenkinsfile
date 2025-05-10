@@ -37,30 +37,20 @@ environment {
         stage("Quality Gate"){
             steps {
                 script {
-                    script {
-                        echo "<--------------- Quality Gate Started --------------->"
-                        // Set a shorter timeout (e.g., 15 minutes)
-                        timeout(time: 15, unit: 'MINUTES') { 
-                            try {
-                                // Wait for SonarQube quality gate to complete
-                                def qg = waitForQualityGate()
                     
-                                // Log the quality gate status for troubleshooting
-                                echo "Quality Gate Status: ${qg.status}"
-                    
-                                // If the status is not 'OK', fail the pipeline
-                                if (qg.status != 'OK') {
-                                    error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                                } else {
-                                    echo "Quality Gate passed successfully!"
-                                }
-                            } catch (Exception e) {
-                                // Handle any exception that may occur and print the error
-                                error "An error occurred while waiting for the Quality Gate: ${e.message}"
-                            }
+                    echo "<--------------- Quality Gate Started --------------->"
+                    // Set a shorter timeout (e.g., 15 minutes)
+                    timeout(time: 15, unit: 'MINUTES') {  // Set a reasonable timeout (e.g., 30 minutes)
+                    retry(6) {  // Retry 6 times, i.e., check 6 times at 10 seconds intervals
+                        def qg = waitForQualityGate()  // Wait for SonarQube to complete the analysis
+                        if (qg.status != 'OK') {
+                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
                         }
-                        echo "<--------------- Quality Gate Ended --------------->"
+                        echo "Quality Gate passed: ${qg.status}"  // Output status after each check
                     }
+                }
+                echo "<--------------- Quality Gate Ended --------------->"
+                    
                 }
             }
         }
