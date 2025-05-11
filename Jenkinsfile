@@ -87,14 +87,14 @@ environment {
 
 
 // stage(" Deploy ") {
-//        steps {
-//          script {
-//             echo '<--------------- Helm Deploy Started --------------->'
-//             sh 'helm install sample-app sample-app-1.0.1'
-//             echo '<--------------- Helm deploy Ends --------------->'
-//          }
-//        }
-// }  
+//         steps {
+//           script {
+//              echo '<--------------- Helm Deploy Started --------------->'
+//              sh 'helm install sample-app sample-app-1.0.1'
+//              echo '<--------------- Helm deploy Ends --------------->'
+//           }
+//         }
+//  }  
 }
 }
 
