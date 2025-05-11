@@ -62,7 +62,11 @@ environment {
             }
         }
 
-
+        stage("Check Docker Access") {
+            steps {
+                sh "id && docker ps"
+            }
+        }
      stage(" Docker Build ") {
        steps {
          script {
@@ -86,15 +90,6 @@ environment {
          }
      }
 
-
-
-//     // stage (" Deploy "){
-//     //     steps {
-//     //         script {
-//     //            sh './deploy.sh'  
-//     //         }
-//     //     }
-//     // }
 
 // stage(" Deploy ") {
 //        steps {
