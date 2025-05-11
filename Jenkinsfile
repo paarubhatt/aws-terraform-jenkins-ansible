@@ -1,5 +1,5 @@
 def registry = 'https://trialy49gxb.jfrog.io'
-def imageName = 'trialy49gxb.jfrog.io/docker-local/sample_app'
+def imageName = 'trialy49gxb.jfrog.io/dokcer-local/sample_app'
 def version   = '1.0.0'
 
 pipeline {
@@ -62,11 +62,6 @@ environment {
             }
         }
 
-        stage("Check Docker Access") {
-            steps {
-                sh "id && docker ps"
-            }
-        }
      stage(" Docker Build ") {
        steps {
          script {
